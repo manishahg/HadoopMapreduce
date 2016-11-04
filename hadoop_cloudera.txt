@@ -1,0 +1,38 @@
+Cloudera
+
+ssh cloudera@ipaddr
+pwd : cloudera
+
+Check hadoop version
+	$find /usr -name “*hadoop*.jar”
+
+To check the namenode in cloudier
+Go to mozilla firefox and type
+	localhost:50070
+	http://localhost:50070/explorer.html#/user
+ 
+sudo su hdfs
+hadoop fs -mkdir /user/cloudera
+hadoop fs -chown cloudera /user/cloudera
+exit
+sudo su cloudera
+hadoop fs -mkdir /user/cloudera/wordcount /user/cloudera/wordcount/input
+
+Create 3 file file0, file 1, file2
+	echo “Hello Good morning” > file0 
+..same way 2 other files
+
+hadoop fs -put file* /user/cloudera/wordcount/input
+
+$ cd /usr/lib/hadoop-mapreduce/
+$ hadoop jar hadoop-mapreduce-examples.jar wordcount /user/cloudera/wordcount/input/ /user/cloudera/wordcount/output/
+
+To check content of output
+$hadoop-mapreduce]$ hadoop fs -cat /user/cloudera/wordcount/output/part-r-00000
+
+
+In Eclipse
+	Right click on wordcount.java and 
+		Run as -> Run Configurations -> 
+			Change name and Main Class(search**), set Arguments(Example:/Users/manisha/java_coding/data /Users/manisha/java_coding/wordcountoutput)
+			***output filename should be unique
